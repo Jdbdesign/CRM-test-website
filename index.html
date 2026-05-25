@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisto — Trusted Advisor CRM Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf9f6;
+            --white: #fff;
+            --text: #0b0707;
+            --text-sec: #3b3b3b;
+            --accent: #fe5b25;
+            --card-bg: #f5f2ed;
+            --border: #e8e4df;
+            --dark: #111111;
+            --yellow: #f5c842;
+            --green: #22c55e;
+            --blue: #3b82f6;
+            --purple: #8b5cf6;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+        h1,h2,h3,h4{font-family:'Outfit',sans-serif;line-height:1.15}
+
+        /* NAV */
+        nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{display:flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);text-decoration:none}
+        .logo-icon{width:28px;height:28px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center}
+        .logo-icon svg{width:15px;height:15px;fill:white}
+        .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+        .nav-links a{text-decoration:none;color:var(--text-sec);font-size:14px;font-weight:500;transition:color .2s}
+        .nav-links a:hover{color:var(--text)}
+        .nav-cta{background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s}
+        .nav-cta:hover{background:#e64d1a;transform:translateY(-1px)}
+
+        /* HERO */
+        .hero{padding:90px 48px 60px;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(254,91,37,.07) 0%,transparent 70%);pointer-events:none}
+        .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--text-sec);margin-bottom:20px}
+        .hero-badge span{width:7px;height:7px;background:var(--green);border-radius:50%;display:block}
+        .hero h1{font-size:clamp(36px,4.5vw,56px);font-weight:800;letter-spacing:-.02em;margin-bottom:20px}
+        .hero h1 em{font-style:italic;color:var(--accent)}
+        .hero p{font-size:16px;color:var(--text-sec);max-width:420px;margin-bottom:32px;line-height:1.7}
+        .cta-row{display:flex;align-items:center;gap:20px;margin-bottom:40px}
+        .btn-primary{background:var(--accent);color:#fff;padding:13px 26px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;transition:all .2s}
+        .btn-primary:hover{background:#e64d1a;transform:translateY(-2px);box-shadow:0 8px 20px rgba(254,91,37,.3)}
+        .btn-ghost{color:var(--text);font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+        .hero-stats{display:flex;align-items:center;gap:24px}
+        .stars{display:flex;gap:2px}
+        .stars svg{width:14px;height:14px;fill:var(--yellow)}
+        .stat-text{font-size:13px;color:var(--text-sec)}
+        .stat-num{font-size:22px;font-weight:700;font-family:'Outfit',sans-serif}
+        .stat-divider{width:1px;height:28px;background:var(--border)}
+
+        /* HERO VISUAL */
+        .hero-visual{position:relative;height:480px}
+        .dash-float{position:absolute;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.12),0 4px 16px rgba(0,0,0,.06);padding:20px}
+        .dash-main{top:0;right:0;width:320px;padding:22px}
+        .dash-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+        .dash-lbl{font-size:11px;font-weight:600;color:var(--text-sec);text-transform:uppercase;letter-spacing:.06em}
+        .dash-dots{display:flex;gap:4px}
+        .dash-dot{width:7px;height:7px;border-radius:50%}
+        .rev-card{background:var(--yellow);border-radius:12px;padding:16px;margin-bottom:12px}
+        .rev-label{font-size:10px;font-weight:600;color:rgba(0,0,0,.55);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+        .rev-val{font-size:26px;font-weight:800;font-family:'Outfit',sans-serif;color:var(--text)}
+        .prog-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+        .prog-wrap{flex:1;height:5px;background:rgba(0,0,0,.15);border-radius:100px;overflow:hidden}
+        .prog-fill{height:100%;background:var(--text);border-radius:100px}
+        .prog-pct{font-size:11px;font-weight:700}
+        .mini-bars{display:flex;align-items:flex-end;gap:4px;height:48px;margin-top:12px}
+        .mbar{flex:1;border-radius:3px 3px 0 0;background:var(--accent)}
+        .dash-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+        .mstat{background:var(--card-bg);border-radius:9px;padding:10px}
+        .mstat-lbl{font-size:10px;color:var(--text-sec);margin-bottom:3px}
+        .mstat-val{font-size:15px;font-weight:700;font-family:'Outfit',sans-serif}
+        .dash-users{bottom:70px;left:-20px;width:180px;padding:14px}
+        .avatars{display:flex;margin-bottom:6px}
+        .av{width:26px;height:26px;border-radius:50%;border:2px solid #fff;margin-left:-7px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
+        .av:first-child{margin-left:0}
+        .dash-users-count{font-size:17px;font-weight:700;font-family:'Outfit',sans-serif}
+        .dash-users-txt{font-size:11px;color:var(--text-sec)}
+        .dash-notif{bottom:8px;right:10px;width:210px;padding:12px 14px;display:flex;align-items:center;gap:10px}
+        .notif-icon{width:34px;height:34px;border-radius:9px;background:#dcfce7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .notif-title{font-size:12px;font-weight:600}
+        .notif-sub{font-size:11px;color:var(--text-sec)}
+
+        /* SECTIONS */
+        section{padding:80px 48px}
+        .sec-inner{max-width:1200px;margin:0 auto}
+        .sec-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(254,91,37,.1);color:var(--accent);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:600;margin-bottom:14px;letter-spacing:.03em}
+        .sec-h{font-size:clamp(26px,3.2vw,38px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+        .sec-sub{font-size:15px;color:var(--text-sec);max-width:520px;line-height:1.7}
+        .tc{text-align:center}
+        .tc .sec-sub{margin:0 auto}
+
+        /* FEATURES */
+        .feat-section{background:var(--white)}
+        .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+        .feat-card{background:var(--bg);border-radius:16px;padding:26px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+        .feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+        .feat-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
+        .feat-card h3{font-size:16px;font-weight:700;margin-bottom:7px}
+        .feat-card p{font-size:14px;color:var(--text-sec);line-height:1.6}
+
+        /* TWO COL */
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+        .check-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:26px}
+        .check-list li{display:flex;align-items:flex-start;gap:11px;font-size:14px;color:var(--text-sec)}
+        .chk{width:20px;height:20px;border-radius:50%;background:rgba(254,91,37,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+        .chk svg{width:10px;height:10px;stroke:var(--accent)}
+
+        /* ANALYTICS MOCKUP */
+        .a-mock{background:#fff;border-radius:18px;padding:22px;box-shadow:0 16px 50px rgba(0,0,0,.09)}
+        .m-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+        .m-title{font-size:13px;font-weight:600}
+        .m-period{font-size:11px;color:var(--text-sec);background:var(--card-bg);padding:4px 10px;border-radius:6px}
+        .bar-area{height:130px;display:flex;align-items:flex-end;gap:7px}
+        .bar-grp{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+        .bar-pair{width:100%;display:flex;gap:2px;align-items:flex-end}
+        .cbar{flex:1;border-radius:3px 3px 0 0;min-height:3px}
+        .cbar.p{background:var(--accent)}
+        .cbar.s{background:var(--border)}
+        .clabel{font-size:9px;color:var(--text-sec)}
+        .chart-legend{display:flex;gap:14px;margin-top:10px}
+        .leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-sec)}
+        .leg-dot{width:8px;height:8px;border-radius:2px}
+        .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+        .mbox{background:var(--card-bg);border-radius:9px;padding:11px}
+        .mbox-lbl{font-size:10px;color:var(--text-sec);margin-bottom:3px}
+        .mbox-val{font-size:15px;font-weight:700;font-family:'Outfit',sans-serif}
+        .mbox-chg{font-size:10px;font-weight:600;margin-top:2px}
+        .up{color:var(--green)}.down{color:#ef4444}
+
+        /* DASHBOARD SECTION */
+        .dash-section{background:var(--card-bg)}
+        .big-mock{background:#fff;border-radius:18px;padding:26px;box-shadow:0 16px 50px rgba(0,0,0,.09)}
+        .donut-row{display:flex;align-items:center;gap:22px;margin-bottom:18px}
+        .donut-wrap{position:relative;width:105px;height:105px;flex-shrink:0}
+        .donut{width:105px;height:105px;border-radius:50%;background:conic-gradient(var(--accent) 0% 42%,var(--yellow) 42% 67%,var(--blue) 67% 85%,var(--card-bg) 85% 100%)}
+        .donut-hole{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:63px;height:63px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+        .dh-val{font-size:15px;font-weight:800;font-family:'Outfit',sans-serif;line-height:1}
+        .dh-lbl{font-size:8px;color:var(--text-sec)}
+        .dlegend{flex:1}
+        .dleg-item{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;font-size:12px}
+        .dleg-left{display:flex;align-items:center;gap:7px;color:var(--text-sec)}
+        .dleg-dot{width:8px;height:8px;border-radius:50%}
+        .dleg-pct{font-weight:700;font-family:'Outfit',sans-serif}
+        .pipe-list{display:flex;flex-direction:column;gap:10px}
+        .pipe-item{display:flex;align-items:center;gap:10px}
+        .pipe-info{flex:1}
+        .pipe-name{font-size:12px;font-weight:500;margin-bottom:4px}
+        .pipe-bar{height:4px;background:var(--card-bg);border-radius:100px;overflow:hidden}
+        .pipe-fill{height:100%;border-radius:100px}
+        .pipe-val{font-size:12px;font-weight:600;font-family:'Outfit',sans-serif;white-space:nowrap}
+        .feat-items{display:flex;flex-direction:column;gap:18px;margin-top:22px}
+        .fi{display:flex;align-items:flex-start;gap:14px}
+        .fi-icon{width:40px;height:40px;border-radius:10px;background:var(--card-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .fi h4{font-size:15px;font-weight:600;margin-bottom:3px}
+        .fi p{font-size:13px;color:var(--text-sec);line-height:1.5}
+
+        /* ADVANCED */
+        .adv-section{background:var(--white)}
+        .dark-mock{background:var(--dark);border-radius:18px;padding:22px;box-shadow:0 16px 50px rgba(0,0,0,.15)}
+
+        /* PRICING */
+        .price-section{background:var(--bg)}
+        .p-toggle{display:flex;align-items:center;gap:12px;justify-content:center;margin:26px 0}
+        .p-toggle-lbl{font-size:14px;font-weight:500}
+        .toggle-sw{position:relative;width:42px;height:23px;background:var(--border);border-radius:100px;cursor:pointer;transition:background .2s}
+        .toggle-sw.on{background:var(--accent)}
+        .toggle-knob{position:absolute;top:3px;left:3px;width:17px;height:17px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+        .toggle-sw.on .toggle-knob{transform:translateX(19px)}
+        .save-badge{background:rgba(34,197,94,.12);color:var(--green);font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px}
+        .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:14px}
+        .pcard{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:30px;transition:transform .2s,box-shadow .2s}
+        .pcard.featured{background:var(--dark);border-color:var(--dark);color:#fff;transform:scale(1.02);box-shadow:0 24px 60px rgba(0,0,0,.2)}
+        .pcard:hover:not(.featured){transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+        .plan-name{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-sec);margin-bottom:7px}
+        .featured .plan-name{color:rgba(255,255,255,.55)}
+        .plan-price{font-size:42px;font-weight:800;font-family:'Outfit',sans-serif;line-height:1;margin-bottom:3px}
+        .plan-per{font-size:13px;color:var(--text-sec);margin-bottom:18px}
+        .featured .plan-per{color:rgba(255,255,255,.5)}
+        .pdivider{height:1px;background:var(--border);margin:18px 0}
+        .featured .pdivider{background:rgba(255,255,255,.1)}
+        .plan-feats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px}
+        .plan-feats li{display:flex;align-items:center;gap:9px;font-size:14px}
+        .featured .plan-feats li{color:rgba(255,255,255,.85)}
+        .pchk{width:18px;height:18px;border-radius:50%;background:rgba(254,91,37,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .featured .pchk{background:rgba(255,255,255,.15)}
+        .pchk svg{width:10px;height:10px;stroke:var(--accent)}
+        .featured .pchk svg{stroke:#fff}
+        .btn-plan{display:block;text-align:center;padding:12px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;width:100%;transition:all .2s}
+        .btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+        .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+        .btn-orange{background:var(--accent);color:#fff}
+        .btn-orange:hover{background:#e64d1a;box-shadow:0 6px 16px rgba(254,91,37,.3)}
+        .btn-white{background:#fff;color:var(--dark)}
+        .btn-white:hover{opacity:.88}
+
+        /* TESTIMONIALS */
+        .test-section{background:var(--white)}
+        .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+        .tcard{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,box-shadow .2s}
+        .tcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+        .tstars{display:flex;gap:3px;margin-bottom:12px}
+        .tstars svg{width:13px;height:13px;fill:var(--yellow)}
+        .ttext{font-size:14px;color:var(--text-sec);line-height:1.65;margin-bottom:16px}
+        .tauthor{display:flex;align-items:center;gap:10px}
+        .tav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+        .tav-name{font-size:13px;font-weight:600}
+        .tav-role{font-size:11px;color:var(--text-sec)}
+
+        /* FAQ */
+        .faq-section{background:var(--bg)}
+        .faq-list{max-width:660px;margin:44px auto 0}
+        .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:9px;background:var(--white);overflow:hidden}
+        .faq-q{display:flex;align-items:center;justify-content:space-between;padding:17px 20px;cursor:pointer;font-size:15px;font-weight:500;gap:14px;user-select:none}
+        .faq-ico{width:24px;height:24px;border-radius:50%;background:var(--card-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .25s}
+        .faq-item.open .faq-ico{background:var(--accent);transform:rotate(45deg)}
+        .faq-ico svg{width:11px;height:11px;stroke:var(--text);transition:stroke .2s}
+        .faq-item.open .faq-ico svg{stroke:#fff}
+        .faq-ans{max-height:0;overflow:hidden;transition:max-height .32s ease}
+        .faq-item.open .faq-ans{max-height:180px}
+        .faq-ans-inner{padding:0 20px 17px;font-size:14px;color:var(--text-sec);line-height:1.7}
+
+        /* CTA BANNER */
+        .cta-banner{background:var(--dark);color:#fff;padding:80px 48px;text-align:center}
+        .cta-banner h2{font-size:clamp(30px,4vw,50px);font-weight:800;letter-spacing:-.02em;max-width:560px;margin:0 auto 26px}
+        .cta-banner h2 em{font-style:italic;color:var(--accent)}
+        .social-icons{display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:26px}
+        .si{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+        .si:hover{background:rgba(255,255,255,.2)}
+        .si svg{width:16px;height:16px;fill:#fff}
+
+        /* FOOTER */
+        footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:56px 48px 28px;color:rgba(255,255,255,.65)}
+        .ft-inner{max-width:1200px;margin:0 auto}
+        .ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
+        .ft-logo{display:flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:17px;color:#fff;text-decoration:none;margin-bottom:10px}
+        .ft-desc{font-size:13px;line-height:1.7;max-width:210px}
+        .ft-col h5{font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
+        .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+        .ft-col ul a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+        .ft-col ul a:hover{color:#fff}
+        .ft-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(255,255,255,.3)}
+        .ft-bottom a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+        .ft-bottom a:hover{color:rgba(255,255,255,.6)}
+        .ft-links{display:flex;gap:14px}
+
+        /* RESPONSIVE */
+        @media(max-width:960px){
+            .hero-inner,.two-col{grid-template-columns:1fr}
+            .hero-visual{display:none}
+            .feat-grid,.price-grid,.test-grid{grid-template-columns:1fr}
+            nav{padding:0 20px}
+            .nav-links{display:none}
+            section{padding:56px 20px}
+            .hero{padding:70px 20px 50px}
+            .ft-top{grid-template-columns:1fr 1fr}
+            .cta-banner{padding:60px 20px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#" class="nav-logo">
+        <div class="logo-icon">
+            <svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+        </div>
+        Bisto
+    </a>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-badge"><span></span>Trusted by 600+ businesses</div>
+            <h1>Trusted advisor<br><em>CRM</em> excellence</h1>
+            <p>Streamline your customer relationships with intelligent tools built for modern sales teams. Close more deals, faster.</p>
+            <div class="cta-row">
+                <a href="#" class="btn-primary">
+                    Start free trial
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                </a>
+                <a href="#" class="btn-ghost">
+                    Watch demo
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><polygon points="6.5,5.5 12,8 6.5,10.5" fill="currentColor" stroke="none"/></svg>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div style="display:flex;align-items:center;gap:8px">
+                    <div class="stars">
+                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
+                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
+                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
+                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
+                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
+                    </div>
+                    <span class="stat-text">5/5 rating</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div style="display:flex;align-items:center;gap:7px">
+                    <span class="stat-num">600+</span>
+                    <span class="stat-text">happy clients</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="dash-float dash-main">
+                <div class="dash-hdr">
+                    <span class="dash-lbl">Revenue Overview</span>
+                    <div class="dash-dots">
+                        <div class="dash-dot" style="background:#fe5b25"></div>
+                        <div class="dash-dot" style="background:#f5c842"></div>
+                        <div class="dash-dot" style="background:#22c55e"></div>
+                    </div>
+                </div>
+                <div class="rev-card">
+                    <div class="rev-label">Total Revenue</div>
+                    <div class="rev-val">$10.5M</div>
+                    <div class="prog-row">
+                        <div class="prog-wrap"><div class="prog-fill" style="width:65%"></div></div>
+                        <span class="prog-pct">65%</span>
+                    </div>
+                </div>
+                <div class="mini-bars">
+                    <div class="mbar" style="height:54%;opacity:.7"></div>
+                    <div class="mbar" style="height:38%;opacity:.5"></div>
+                    <div class="mbar" style="height:72%;opacity:.8"></div>
+                    <div class="mbar" style="height:44%;opacity:.45"></div>
+                    <div class="mbar" style="height:88%;opacity:.9"></div>
+                    <div class="mbar" style="height:62%;opacity:.6"></div>
+                    <div class="mbar" style="height:100%;opacity:1"></div>
+                </div>
+                <div class="dash-stats">
+                    <div class="mstat"><div class="mstat-lbl">New Deals</div><div class="mstat-val" style="color:var(--accent)">142</div></div>
+                    <div class="mstat"><div class="mstat-lbl">Closed</div><div class="mstat-val" style="color:var(--green)">98</div></div>
+                </div>
+            </div>
+            <div class="dash-float dash-users">
+                <div class="avatars">
+                    <div class="av" style="background:#fe5b25">JD</div>
+                    <div class="av" style="background:#3b82f6">KL</div>
+                    <div class="av" style="background:#8b5cf6">AM</div>
+                    <div class="av" style="background:#22c55e">TR</div>
+                </div>
+                <div class="dash-users-count">600+</div>
+                <div class="dash-users-txt">active users today</div>
+            </div>
+            <div class="dash-float dash-notif">
+                <div class="notif-icon">
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round"><path d="M2 9l4 4 8-8"/></svg>
+                </div>
+                <div>
+                    <div class="notif-title">Deal Closed! 🎉</div>
+                    <div class="notif-sub">+$24,500 added</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="feat-section" id="features">
+    <div class="sec-inner">
+        <div class="tc">
+            <div class="sec-tag">Features</div>
+            <h2 class="sec-h">Get proper CRM solutions</h2>
+            <p class="sec-sub">Everything your sales team needs to manage relationships, close deals, and grow revenue.</p>
+        </div>
+        <div class="feat-grid">
+            <div class="feat-card">
+                <div class="feat-icon" style="background:rgba(254,91,37,.1)">📋</div>
+                <h3>Task tracking</h3>
+                <p>Never miss a follow-up. Organize, prioritize, and track all your sales tasks in one centralized dashboard with smart reminders and deadlines.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon" style="background:rgba(59,130,246,.1)">⚡</div>
+                <h3>Pipeline management tools</h3>
+                <p>Visualize your entire sales pipeline at a glance. Drag-and-drop deals through stages and forecast revenue with precision and confidence.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon" style="background:rgba(34,197,94,.1)">💬</div>
+                <h3>Smart communication</h3>
+                <p>Centralize all client communications — emails, calls, and messages — in a single thread for every contact and deal record.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ANALYTICS SECTION -->
+<section style="background:var(--bg);padding:80px 48px">
+    <div class="sec-inner">
+        <div class="two-col">
+            <div class="a-mock">
+                <div class="m-hdr">
+                    <span class="m-title">Sales Performance</span>
+                    <span class="m-period">Last 6 months</span>
+                </div>
+                <div class="bar-area">
+                    <div class="bar-grp"><div class="bar-pair"><div class="cbar p" style="height:70px"></div><div class="cbar s" style="height:50px"></div></div><span class="clabel">Jan</span></div>
+                    <div class="bar-grp"><div class="bar-pair"><div class="cbar p" style="height:90px"></div><div class="cbar s" style="height:64px"></div></div><span class="clabel">Feb</span></div>
+                    <div class="bar-grp"><div class="bar-pair"><div class="cbar p" style="height:60px"></div><div class="cbar s" style="height:44px"></div></div><span class="clabel">Mar</span></div>
+                    <div class="bar-grp"><div class="bar-pair"><div class="cbar p" style="height:112px"></div><div class="cbar s" style="height:80px"></div></div><span class="clabel">Apr</span></div>
+                    <div class="bar-grp"><div class="bar-pair"><div class="cbar p" style="height:84px"></div><div class="cbar s" style="height:60px"></div></div><span class="clabel">May</span></div>
+                    <div class="bar-grp"><div class="bar-pair"><div class="cbar p" style="height:128px"></div><div class="cbar s" style="height:90px"></div></div><span class="clabel">Jun</span></div>
+                </div>
+                <div class="chart-legend">
+                    <div class="leg"><div class="leg-dot" style="background:var(--accent)"></div>Revenue</div>
+                    <div class="leg"><div class="leg-dot" style="background:var(--border)"></div>Target</div>
+                </div>
+                <div class="metrics">
+                    <div class="mbox"><div class="mbox-lbl">Total Revenue</div><div class="mbox-val">$2.4M</div><div class="mbox-chg up">↑ 18%</div></div>
+                    <div class="mbox"><div class="mbox-lbl">Avg Deal</div><div class="mbox-val">$18k</div><div class="mbox-chg up">↑ 7%</div></div>
+                    <div class="mbox"><div class="mbox-lbl">Win Rate</div><div class="mbox-val">68%</div><div class="mbox-chg down">↓ 2%</div></div>
+                </div>
+            </div>
+            <div>
+                <div class="sec-tag">Analytics</div>
+                <h2 class="sec-h">Smarter insights & enhanced customer engagement</h2>
+                <p class="sec-sub">Make data-driven decisions with real-time analytics that reveal exactly where your revenue is coming from.</p>
+                <ul class="check-list">
+                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Real-time revenue tracking with custom dashboards tailored to your goals</li>
+                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Customer engagement scores to identify your hottest leads instantly</li>
+                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Automated reports delivered to your inbox every Monday morning</li>
+                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Predictive forecasting powered by AI to help you hit your targets</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD FEATURES -->
+<section class="dash-section">
+    <div class="sec-inner">
+        <div class="two-col" style="gap:56px">
+            <div>
+                <div class="sec-tag">Dashboard</div>
+                <h2 class="sec-h">Everything in one powerful view</h2>
+                <p class="sec-sub">Your entire revenue operation at a glance. Track deals, monitor performance, and act on insights instantly.</p>
+                <div class="feat-items">
+                    <div class="fi">
+                        <div class="fi-icon" style="background:rgba(254,91,37,.1)">
+                            <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 3"/></svg>
+                        </div>
+                        <div><h4>Real-time pipeline tracking</h4><p>Monitor deals as they progress through each stage automatically.</p></div>
+                    </div>
+                    <div class="fi">
+                        <div class="fi-icon" style="background:rgba(59,130,246,.1)">
+                            <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="#3b82f6" stroke-width="1.6"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M6 8h6M6 11h4"/></svg>
+                        </div>
+                        <div><h4>Customizable widgets</h4><p>Build the dashboard that works for you, not the other way around.</p></div>
+                    </div>
+                    <div class="fi">
+                        <div class="fi-icon" style="background:rgba(34,197,94,.1)">
+                            <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="#22c55e" stroke-width="1.6"><path d="M3 13l4-4 3 3 5-6"/></svg>
+                        </div>
+                        <div><h4>Performance benchmarks</h4><p>Compare your team's results against industry benchmarks and goals.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="big-mock">
+                <div class="m-hdr">
+                    <span class="m-title">Pipeline Analytics</span>
+                    <div style="display:flex;gap:5px">
+                        <div style="width:7px;height:7px;border-radius:50%;background:#fe5b25;margin-top:2px"></div>
+                        <div style="width:7px;height:7px;border-radius:50%;background:#f5c842;margin-top:2px"></div>
+                        <div style="width:7px;height:7px;border-radius:50%;background:#22c55e;margin-top:2px"></div>
+                    </div>
+                </div>
+                <div class="donut-row">
+                    <div class="donut-wrap">
+                        <div class="donut"></div>
+                        <div class="donut-hole"><div class="dh-val">$4.2M</div><div class="dh-lbl">Total</div></div>
+                    </div>
+                    <div class="dlegend">
+                        <div class="dleg-item"><div class="dleg-left"><div class="dleg-dot" style="background:var(--accent)"></div>Closed Won</div><div class="dleg-pct">42%</div></div>
+                        <div class="dleg-item"><div class="dleg-left"><div class="dleg-dot" style="background:var(--yellow)"></div>In Progress</div><div class="dleg-pct">25%</div></div>
+                        <div class="dleg-item"><div class="dleg-left"><div class="dleg-dot" style="background:var(--blue)"></div>Prospecting</div><div class="dleg-pct">18%</div></div>
+                        <div class="dleg-item"><div class="dleg-left"><div class="dleg-dot" style="background:var(--border)"></div>Stalled</div><div class="dleg-pct">15%</div></div>
+                    </div>
+                </div>
+                <div class="pipe-list">
+                    <div class="pipe-item"><div class="pipe-info"><div class="pipe-name">Enterprise Deals</div><div class="pipe-bar"><div class="pipe-fill" style="width:78%;background:var(--accent)"></div></div></div><div class="pipe-val">$1.8M</div></div>
+                    <div class="pipe-item"><div class="pipe-info"><div class="pipe-name">Mid-Market</div><div class="pipe-bar"><div class="pipe-fill" style="width:55%;background:var(--yellow)"></div></div></div><div class="pipe-val">$940k</div></div>
+                    <div class="pipe-item"><div class="pipe-info"><div class="pipe-name">SMB</div><div class="pipe-bar"><div class="pipe-fill" style="width:42%;background:var(--blue)"></div></div></div><div class="pipe-val">$620k</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ADVANCED ANALYTICS -->
+<section class="adv-section">
+    <div class="sec-inner">
+        <div class="two-col">
+            <div class="dark-mock">
+                <div class="m-hdr">
+                    <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.07em">Customer Insights</span>
+                    <span style="font-size:11px;color:rgba(255,255,255,.35);background:rgba(255,255,255,.07);padding:4px 10px;border-radius:6px">Live</span>
+                </div>
+                <div style="position:relative;height:125px;margin:14px 0">
+                    <svg width="100%" height="125" viewBox="0 0 300 125" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#fe5b25" stop-opacity=".3"/>
+                                <stop offset="100%" stop-color="#fe5b25" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M0 100 C30 90,50 78,75 68 S120 38,150 48 S200 28,230 18 S270 12,300 8" fill="none" stroke="#fe5b25" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M0 100 C30 90,50 78,75 68 S120 38,150 48 S200 28,230 18 S270 12,300 8 L300 125 L0 125Z" fill="url(#lg1)"/>
+                        <path d="M0 108 C40 103,70 98,100 93 S150 83,180 78 S240 68,300 58" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5" stroke-dasharray="4 3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+                    <div style="background:rgba(255,255,255,.07);border-radius:9px;padding:12px">
+                        <div style="font-size:10px;color:rgba(255,255,255,.45);margin-bottom:3px">Engagement Rate</div>
+                        <div style="font-size:15px;font-weight:700;font-family:'Outfit',sans-serif;color:#fff">84.2%</div>
+                        <div style="font-size:10px;font-weight:600;color:var(--green);margin-top:2px">↑ 12.4%</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,.07);border-radius:9px;padding:12px">
+                        <div style="font-size:10px;color:rgba(255,255,255,.45);margin-bottom:3px">Retention</div>
+                        <div style="font-size:15px;font-weight:700;font-family:'Outfit',sans-serif;color:#fff">91.7%</div>
+                        <div style="font-size:10px;font-weight:600;color:var(--green);margin-top:2px">↑ 3.1%</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="sec-tag">Insights</div>
+                <h2 class="sec-h">Advanced analytics and customer insights.</h2>
+                <p class="sec-sub">Unlock deep intelligence about your customers with AI-powered analytics that surface what matters most.</p>
+                <div class="feat-items">
+                    <div class="fi">
+                        <div class="fi-icon"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><path d="M3 14l4-5 3 3 5-7"/><circle cx="15" cy="5" r="1.5"/></svg></div>
+                        <div><h4>Sales pipeline analytics</h4><p>Track every deal's journey with granular stage-by-stage conversion metrics.</p></div>
+                    </div>
+                    <div class="fi">
+                        <div class="fi-icon"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="10" y="2" width="6" height="6" rx="1"/><rect x="2" y="10" width="6" height="6" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg></div>
+                        <div><h4>Task management efficiency</h4><p>Measure team productivity with task completion rates and time-to-close data.</p></div>
+                    </div>
+                    <div class="fi">
+                        <div class="fi-icon"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><path d="M9 2l2.2 4.5 5 .7-3.6 3.5.85 4.95L9 13.25 4.55 15.65l.85-4.95L1.8 7.2l5-.7z"/></svg></div>
+                        <div><h4>Deal closure management</h4><p>Identify bottlenecks that slow deals down and optimize your close rate.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="price-section" id="pricing">
+    <div class="sec-inner">
+        <div class="tc">
+            <div class="sec-tag">Pricing</div>
+            <h2 class="sec-h">Flexible pricing plans<br>choose your best.</h2>
+            <p class="sec-sub">Start free and scale as you grow. No hidden fees, cancel anytime.</p>
+            <div class="p-toggle">
+                <span class="p-toggle-lbl">Monthly</span>
+                <div class="toggle-sw" id="pricingToggle"><div class="toggle-knob"></div></div>
+                <span class="p-toggle-lbl">Annual</span>
+                <span class="save-badge">Save 20%</span>
+            </div>
+        </div>
+        <div class="price-grid">
+            <div class="pcard">
+                <div class="plan-name">Free</div>
+                <div class="plan-price" id="p0">$0</div>
+                <div class="plan-per">/month, forever free</div>
+                <div class="pdivider"></div>
+                <ul class="plan-feats">
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Up to 5 contacts</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Basic pipeline view</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Email integration</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Community support</li>
+                </ul>
+                <button class="btn-plan btn-outline">Get started free</button>
+            </div>
+            <div class="pcard featured">
+                <div class="plan-name">Pro</div>
+                <div class="plan-price" id="p1">$29</div>
+                <div class="plan-per">/month per user</div>
+                <div class="pdivider"></div>
+                <ul class="plan-feats">
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Unlimited contacts</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Advanced analytics</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Pipeline automation</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Priority support</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Custom integrations</li>
+                </ul>
+                <button class="btn-plan btn-orange">Start Pro trial</button>
+            </div>
+            <div class="pcard">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price" id="p2">$99</div>
+                <div class="plan-per">/month per user</div>
+                <div class="pdivider"></div>
+                <ul class="plan-feats">
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Everything in Pro</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Dedicated account manager</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Custom AI workflows</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>SSO & advanced security</li>
+                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>SLA guarantee</li>
+                </ul>
+                <button class="btn-plan btn-outline">Contact sales</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WALL OF LOVE -->
+<section class="test-section" id="testimonials">
+    <div class="sec-inner">
+        <div class="tc">
+            <h2 class="sec-h">Wall of love ♥</h2>
+            <p class="sec-sub">Don't take our word for it. Here's what our customers say about Bisto.</p>
+        </div>
+        <div class="test-grid">
+            <div class="tcard">
+                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <p class="ttext">"Bisto completely transformed how our sales team operates. We closed 40% more deals in the first quarter after switching."</p>
+                <div class="tauthor"><div class="tav" style="background:#fe5b25">SR</div><div><div class="tav-name">Sarah Reynolds</div><div class="tav-role">VP Sales, TechFlow Inc.</div></div></div>
+            </div>
+            <div class="tcard">
+                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <p class="ttext">"The analytics dashboard alone is worth the subscription. I can finally see exactly where we're losing deals and why."</p>
+                <div class="tauthor"><div class="tav" style="background:#3b82f6">MK</div><div><div class="tav-name">Marcus Kim</div><div class="tav-role">CEO, Growthbase</div></div></div>
+            </div>
+            <div class="tcard">
+                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <p class="ttext">"Setup took under an hour and my whole team was onboarded in a day. The intuitive design is miles ahead of our previous CRM."</p>
+                <div class="tauthor"><div class="tav" style="background:#8b5cf6">AP</div><div><div class="tav-name">Aisha Patel</div><div class="tav-role">Sales Director, Nexus Labs</div></div></div>
+            </div>
+            <div class="tcard">
+                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <p class="ttext">"Task automation has saved our reps 2 hours every single day. That's time they can spend actually selling instead of admin work."</p>
+                <div class="tauthor"><div class="tav" style="background:#22c55e">TW</div><div><div class="tav-name">Tyler Wu</div><div class="tav-role">Head of Revenue, Scaleup Co.</div></div></div>
+            </div>
+            <div class="tcard">
+                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <p class="ttext">"Bisto's customer support team is exceptional. They helped us customize workflows perfectly for our specific industry needs."</p>
+                <div class="tauthor"><div class="tav" style="background:#f59e0b">LC</div><div><div class="tav-name">Lena Chen</div><div class="tav-role">Operations Lead, BuildRight</div></div></div>
+            </div>
+            <div class="tcard">
+                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <p class="ttext">"We evaluated 8 CRMs before choosing Bisto. The combination of power and ease-of-use is unmatched at this price point."</p>
+                <div class="tauthor"><div class="tav" style="background:#ec4899">RN</div><div><div class="tav-name">Raj Nair</div><div class="tav-role">Founder, Launchpad AI</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+    <div class="sec-inner">
+        <div class="tc">
+            <div class="sec-tag">FAQ</div>
+            <h2 class="sec-h">Frequently Asked Questions</h2>
+            <p class="sec-sub">Everything you need to know about Bisto CRM.</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item open">
+                <div class="faq-q">How long does it take to set up Bisto?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner">Most teams are fully set up within an hour. We provide a guided onboarding wizard, pre-built templates for common industries, and dedicated support during your first week to ensure a smooth transition.</div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Can I import my existing CRM data?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner">Yes. Bisto supports one-click import from Salesforce, HubSpot, Pipedrive, and most major CRM platforms. You can also import via CSV. Your data will be migrated cleanly with all contact history intact.</div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Is there a contract or can I cancel anytime?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner">No contracts. All monthly plans can be cancelled at any time. Annual plans can be cancelled within the first 30 days for a full refund. We believe in earning your business every month.</div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Does Bisto integrate with my email and calendar?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner">Bisto integrates seamlessly with Gmail, Outlook, Google Calendar, and Calendly. All emails and meetings are automatically logged to the relevant contact and deal records in real time.</div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Is my data secure and GDPR compliant?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner">Absolutely. Bisto is SOC 2 Type II certified and fully GDPR compliant. All data is encrypted in transit and at rest. We never sell your data and you retain full ownership of everything you add to Bisto.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+    <h2>Transform your business with <em>chat support.</em></h2>
+    <div class="social-icons">
+        <div class="si"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+        <div class="si"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none"/></svg></div>
+        <div class="si"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+    </div>
+    <a href="#" class="btn-primary" style="font-size:15px;padding:14px 32px">
+        Start for free today
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="ft-inner">
+        <div class="ft-top">
+            <div>
+                <a href="#" class="ft-logo">
+                    <div class="logo-icon"><svg viewBox="0 0 16 16" fill="white"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
+                    Bisto
+                </a>
+                <p class="ft-desc">The modern CRM for ambitious sales teams. Built for speed, designed for humans.</p>
+            </div>
+            <div class="ft-col"><h5>Product</h5><ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Changelog</a></li><li><a href="#">Roadmap</a></li></ul></div>
+            <div class="ft-col"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul></div>
+            <div class="ft-col"><h5>Resources</h5><ul><li><a href="#">Documentation</a></li><li><a href="#">API Reference</a></li><li><a href="#">Status</a></li><li><a href="#">Support</a></li></ul></div>
+            <div class="ft-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">GDPR</a></li></ul></div>
+        </div>
+        <div class="ft-bottom">
+            <span>© 2025 Bisto. All rights reserved.</span>
+            <div class="ft-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            const open = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!open) item.classList.add('open');
+        });
+    });
+
+    const toggle = document.getElementById('pricingToggle');
+    const prices = [{monthly:'$0',annual:'$0'},{monthly:'$29',annual:'$23'},{monthly:'$99',annual:'$79'}];
+    let annual = false;
+    toggle.addEventListener('click', () => {
+        annual = !annual;
+        toggle.classList.toggle('on', annual);
+        ['p0','p1','p2'].forEach((id,i) => {
+            document.getElementById(id).textContent = prices[i][annual ? 'annual' : 'monthly'];
+        });
+    });
+</script>
+</body>
+</html>
