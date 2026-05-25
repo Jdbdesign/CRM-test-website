@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
         :root {
             --bg: #faf9f6;
@@ -30,7 +31,7 @@
         nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
         .nav-logo{display:flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--text);text-decoration:none}
         .logo-icon{width:28px;height:28px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center}
-        .logo-icon svg{width:15px;height:15px;fill:white}
+        .logo-icon svg{width:15px;height:15px;stroke:white;fill:none}
         .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
         .nav-links a{text-decoration:none;color:var(--text-sec);font-size:14px;font-weight:500;transition:color .2s}
         .nav-links a:hover{color:var(--text)}
@@ -50,9 +51,11 @@
         .btn-primary{background:var(--accent);color:#fff;padding:13px 26px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;transition:all .2s}
         .btn-primary:hover{background:#e64d1a;transform:translateY(-2px);box-shadow:0 8px 20px rgba(254,91,37,.3)}
         .btn-ghost{color:var(--text);font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+        .btn-primary svg{width:15px;height:15px;stroke:currentColor;fill:none}
+        .btn-ghost svg{width:14px;height:14px;stroke:currentColor;fill:none}
         .hero-stats{display:flex;align-items:center;gap:24px}
         .stars{display:flex;gap:2px}
-        .stars svg{width:14px;height:14px;fill:var(--yellow)}
+        .stars svg{width:14px;height:14px;fill:var(--yellow);stroke:var(--yellow)}
         .stat-text{font-size:13px;color:var(--text-sec)}
         .stat-num{font-size:22px;font-weight:700;font-family:'Outfit',sans-serif}
         .stat-divider{width:1px;height:28px;background:var(--border)}
@@ -86,6 +89,7 @@
         .dash-users-txt{font-size:11px;color:var(--text-sec)}
         .dash-notif{bottom:8px;right:10px;width:210px;padding:12px 14px;display:flex;align-items:center;gap:10px}
         .notif-icon{width:34px;height:34px;border-radius:9px;background:#dcfce7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .notif-icon svg{width:15px;height:15px;stroke:#22c55e;fill:none}
         .notif-title{font-size:12px;font-weight:600}
         .notif-sub{font-size:11px;color:var(--text-sec)}
 
@@ -103,7 +107,8 @@
         .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
         .feat-card{background:var(--bg);border-radius:16px;padding:26px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
         .feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
-        .feat-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
+        .feat-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+        .feat-icon svg{width:20px;height:20px;fill:none}
         .feat-card h3{font-size:16px;font-weight:700;margin-bottom:7px}
         .feat-card p{font-size:14px;color:var(--text-sec);line-height:1.6}
 
@@ -112,7 +117,7 @@
         .check-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:26px}
         .check-list li{display:flex;align-items:flex-start;gap:11px;font-size:14px;color:var(--text-sec)}
         .chk{width:20px;height:20px;border-radius:50%;background:rgba(254,91,37,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-        .chk svg{width:10px;height:10px;stroke:var(--accent)}
+        .chk svg{width:10px;height:10px;stroke:var(--accent);fill:none}
 
         /* ANALYTICS MOCKUP */
         .a-mock{background:#fff;border-radius:18px;padding:22px;box-shadow:0 16px 50px rgba(0,0,0,.09)}
@@ -160,6 +165,7 @@
         .feat-items{display:flex;flex-direction:column;gap:18px;margin-top:22px}
         .fi{display:flex;align-items:flex-start;gap:14px}
         .fi-icon{width:40px;height:40px;border-radius:10px;background:var(--card-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .fi-icon svg{width:17px;height:17px;fill:none}
         .fi h4{font-size:15px;font-weight:600;margin-bottom:3px}
         .fi p{font-size:13px;color:var(--text-sec);line-height:1.5}
 
@@ -192,7 +198,7 @@
         .featured .plan-feats li{color:rgba(255,255,255,.85)}
         .pchk{width:18px;height:18px;border-radius:50%;background:rgba(254,91,37,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
         .featured .pchk{background:rgba(255,255,255,.15)}
-        .pchk svg{width:10px;height:10px;stroke:var(--accent)}
+        .pchk svg{width:10px;height:10px;stroke:var(--accent);fill:none}
         .featured .pchk svg{stroke:#fff}
         .btn-plan{display:block;text-align:center;padding:12px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;width:100%;transition:all .2s}
         .btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
@@ -208,7 +214,7 @@
         .tcard{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,box-shadow .2s}
         .tcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
         .tstars{display:flex;gap:3px;margin-bottom:12px}
-        .tstars svg{width:13px;height:13px;fill:var(--yellow)}
+        .tstars svg{width:13px;height:13px;fill:var(--yellow);stroke:var(--yellow)}
         .ttext{font-size:14px;color:var(--text-sec);line-height:1.65;margin-bottom:16px}
         .tauthor{display:flex;align-items:center;gap:10px}
         .tav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
@@ -222,7 +228,7 @@
         .faq-q{display:flex;align-items:center;justify-content:space-between;padding:17px 20px;cursor:pointer;font-size:15px;font-weight:500;gap:14px;user-select:none}
         .faq-ico{width:24px;height:24px;border-radius:50%;background:var(--card-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .25s}
         .faq-item.open .faq-ico{background:var(--accent);transform:rotate(45deg)}
-        .faq-ico svg{width:11px;height:11px;stroke:var(--text);transition:stroke .2s}
+        .faq-ico svg{width:11px;height:11px;stroke:var(--text);fill:none;transition:stroke .2s}
         .faq-item.open .faq-ico svg{stroke:#fff}
         .faq-ans{max-height:0;overflow:hidden;transition:max-height .32s ease}
         .faq-item.open .faq-ans{max-height:180px}
@@ -235,13 +241,14 @@
         .social-icons{display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:26px}
         .si{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
         .si:hover{background:rgba(255,255,255,.2)}
-        .si svg{width:16px;height:16px;fill:#fff}
+        .si svg{width:16px;height:16px;stroke:#fff;fill:none}
 
         /* FOOTER */
         footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:56px 48px 28px;color:rgba(255,255,255,.65)}
         .ft-inner{max-width:1200px;margin:0 auto}
         .ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
         .ft-logo{display:flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:17px;color:#fff;text-decoration:none;margin-bottom:10px}
+        .ft-logo svg{width:15px;height:15px;stroke:white;fill:none}
         .ft-desc{font-size:13px;line-height:1.7;max-width:210px}
         .ft-col h5{font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
         .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
@@ -272,7 +279,7 @@
 <nav>
     <a href="#" class="nav-logo">
         <div class="logo-icon">
-            <svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+            <i data-lucide="layout-grid" width="15" height="15"></i>
         </div>
         Bisto
     </a>
@@ -296,21 +303,21 @@
             <div class="cta-row">
                 <a href="#" class="btn-primary">
                     Start free trial
-                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                    <i data-lucide="arrow-right" width="15" height="15"></i>
                 </a>
                 <a href="#" class="btn-ghost">
                     Watch demo
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><polygon points="6.5,5.5 12,8 6.5,10.5" fill="currentColor" stroke="none"/></svg>
+                    <i data-lucide="play-circle" width="14" height="14"></i>
                 </a>
             </div>
             <div class="hero-stats">
                 <div style="display:flex;align-items:center;gap:8px">
                     <div class="stars">
-                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
-                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
-                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
-                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
-                        <svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg>
+                        <i data-lucide="star" width="14" height="14"></i>
+                        <i data-lucide="star" width="14" height="14"></i>
+                        <i data-lucide="star" width="14" height="14"></i>
+                        <i data-lucide="star" width="14" height="14"></i>
+                        <i data-lucide="star" width="14" height="14"></i>
                     </div>
                     <span class="stat-text">5/5 rating</span>
                 </div>
@@ -366,10 +373,10 @@
             </div>
             <div class="dash-float dash-notif">
                 <div class="notif-icon">
-                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round"><path d="M2 9l4 4 8-8"/></svg>
+                    <i data-lucide="check" width="15" height="15" style="color:#22c55e"></i>
                 </div>
                 <div>
-                    <div class="notif-title">Deal Closed! 🎉</div>
+                    <div class="notif-title">Deal Closed!</div>
                     <div class="notif-sub">+$24,500 added</div>
                 </div>
             </div>
@@ -387,17 +394,23 @@
         </div>
         <div class="feat-grid">
             <div class="feat-card">
-                <div class="feat-icon" style="background:rgba(254,91,37,.1)">📋</div>
+                <div class="feat-icon" style="background:rgba(254,91,37,.1);color:var(--accent)">
+                    <i data-lucide="clipboard-list" width="20" height="20"></i>
+                </div>
                 <h3>Task tracking</h3>
                 <p>Never miss a follow-up. Organize, prioritize, and track all your sales tasks in one centralized dashboard with smart reminders and deadlines.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon" style="background:rgba(59,130,246,.1)">⚡</div>
+                <div class="feat-icon" style="background:rgba(59,130,246,.1);color:#3b82f6">
+                    <i data-lucide="zap" width="20" height="20"></i>
+                </div>
                 <h3>Pipeline management tools</h3>
                 <p>Visualize your entire sales pipeline at a glance. Drag-and-drop deals through stages and forecast revenue with precision and confidence.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon" style="background:rgba(34,197,94,.1)">💬</div>
+                <div class="feat-icon" style="background:rgba(34,197,94,.1);color:#22c55e">
+                    <i data-lucide="message-circle" width="20" height="20"></i>
+                </div>
                 <h3>Smart communication</h3>
                 <p>Centralize all client communications — emails, calls, and messages — in a single thread for every contact and deal record.</p>
             </div>
@@ -437,10 +450,10 @@
                 <h2 class="sec-h">Smarter insights & enhanced customer engagement</h2>
                 <p class="sec-sub">Make data-driven decisions with real-time analytics that reveal exactly where your revenue is coming from.</p>
                 <ul class="check-list">
-                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Real-time revenue tracking with custom dashboards tailored to your goals</li>
-                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Customer engagement scores to identify your hottest leads instantly</li>
-                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Automated reports delivered to your inbox every Monday morning</li>
-                    <li><div class="chk"><svg viewBox="0 0 10 10" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Predictive forecasting powered by AI to help you hit your targets</li>
+                    <li><div class="chk"><i data-lucide="check" width="10" height="10"></i></div>Real-time revenue tracking with custom dashboards tailored to your goals</li>
+                    <li><div class="chk"><i data-lucide="check" width="10" height="10"></i></div>Customer engagement scores to identify your hottest leads instantly</li>
+                    <li><div class="chk"><i data-lucide="check" width="10" height="10"></i></div>Automated reports delivered to your inbox every Monday morning</li>
+                    <li><div class="chk"><i data-lucide="check" width="10" height="10"></i></div>Predictive forecasting powered by AI to help you hit your targets</li>
                 </ul>
             </div>
         </div>
@@ -457,20 +470,20 @@
                 <p class="sec-sub">Your entire revenue operation at a glance. Track deals, monitor performance, and act on insights instantly.</p>
                 <div class="feat-items">
                     <div class="fi">
-                        <div class="fi-icon" style="background:rgba(254,91,37,.1)">
-                            <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 3"/></svg>
+                        <div class="fi-icon" style="background:rgba(254,91,37,.1);color:var(--accent)">
+                            <i data-lucide="clock" width="17" height="17"></i>
                         </div>
                         <div><h4>Real-time pipeline tracking</h4><p>Monitor deals as they progress through each stage automatically.</p></div>
                     </div>
                     <div class="fi">
-                        <div class="fi-icon" style="background:rgba(59,130,246,.1)">
-                            <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="#3b82f6" stroke-width="1.6"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M6 8h6M6 11h4"/></svg>
+                        <div class="fi-icon" style="background:rgba(59,130,246,.1);color:#3b82f6">
+                            <i data-lucide="layout-dashboard" width="17" height="17"></i>
                         </div>
                         <div><h4>Customizable widgets</h4><p>Build the dashboard that works for you, not the other way around.</p></div>
                     </div>
                     <div class="fi">
-                        <div class="fi-icon" style="background:rgba(34,197,94,.1)">
-                            <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="#22c55e" stroke-width="1.6"><path d="M3 13l4-4 3 3 5-6"/></svg>
+                        <div class="fi-icon" style="background:rgba(34,197,94,.1);color:#22c55e">
+                            <i data-lucide="trending-up" width="17" height="17"></i>
                         </div>
                         <div><h4>Performance benchmarks</h4><p>Compare your team's results against industry benchmarks and goals.</p></div>
                     </div>
@@ -548,15 +561,21 @@
                 <p class="sec-sub">Unlock deep intelligence about your customers with AI-powered analytics that surface what matters most.</p>
                 <div class="feat-items">
                     <div class="fi">
-                        <div class="fi-icon"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><path d="M3 14l4-5 3 3 5-7"/><circle cx="15" cy="5" r="1.5"/></svg></div>
+                        <div class="fi-icon" style="color:var(--accent)">
+                            <i data-lucide="bar-chart-2" width="17" height="17"></i>
+                        </div>
                         <div><h4>Sales pipeline analytics</h4><p>Track every deal's journey with granular stage-by-stage conversion metrics.</p></div>
                     </div>
                     <div class="fi">
-                        <div class="fi-icon"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="10" y="2" width="6" height="6" rx="1"/><rect x="2" y="10" width="6" height="6" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg></div>
+                        <div class="fi-icon" style="color:var(--accent)">
+                            <i data-lucide="layout-grid" width="17" height="17"></i>
+                        </div>
                         <div><h4>Task management efficiency</h4><p>Measure team productivity with task completion rates and time-to-close data.</p></div>
                     </div>
                     <div class="fi">
-                        <div class="fi-icon"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><path d="M9 2l2.2 4.5 5 .7-3.6 3.5.85 4.95L9 13.25 4.55 15.65l.85-4.95L1.8 7.2l5-.7z"/></svg></div>
+                        <div class="fi-icon" style="color:var(--accent)">
+                            <i data-lucide="sparkles" width="17" height="17"></i>
+                        </div>
                         <div><h4>Deal closure management</h4><p>Identify bottlenecks that slow deals down and optimize your close rate.</p></div>
                     </div>
                 </div>
@@ -586,10 +605,10 @@
                 <div class="plan-per">/month, forever free</div>
                 <div class="pdivider"></div>
                 <ul class="plan-feats">
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Up to 5 contacts</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Basic pipeline view</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Email integration</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Community support</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Up to 5 contacts</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Basic pipeline view</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Email integration</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Community support</li>
                 </ul>
                 <button class="btn-plan btn-outline">Get started free</button>
             </div>
@@ -599,11 +618,11 @@
                 <div class="plan-per">/month per user</div>
                 <div class="pdivider"></div>
                 <ul class="plan-feats">
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Unlimited contacts</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Advanced analytics</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Pipeline automation</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Priority support</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Custom integrations</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Unlimited contacts</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Advanced analytics</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Pipeline automation</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Priority support</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Custom integrations</li>
                 </ul>
                 <button class="btn-plan btn-orange">Start Pro trial</button>
             </div>
@@ -613,11 +632,11 @@
                 <div class="plan-per">/month per user</div>
                 <div class="pdivider"></div>
                 <ul class="plan-feats">
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Everything in Pro</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Dedicated account manager</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>Custom AI workflows</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>SSO & advanced security</li>
-                    <li><div class="pchk"><svg viewBox="0 0 10 10" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 5l2.5 2.5 4.5-4.5"/></svg></div>SLA guarantee</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Everything in Pro</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Dedicated account manager</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>Custom AI workflows</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>SSO & advanced security</li>
+                    <li><div class="pchk"><i data-lucide="check" width="10" height="10"></i></div>SLA guarantee</li>
                 </ul>
                 <button class="btn-plan btn-outline">Contact sales</button>
             </div>
@@ -634,32 +653,44 @@
         </div>
         <div class="test-grid">
             <div class="tcard">
-                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <div class="tstars">
+                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+                </div>
                 <p class="ttext">"Bisto completely transformed how our sales team operates. We closed 40% more deals in the first quarter after switching."</p>
                 <div class="tauthor"><div class="tav" style="background:#fe5b25">SR</div><div><div class="tav-name">Sarah Reynolds</div><div class="tav-role">VP Sales, TechFlow Inc.</div></div></div>
             </div>
             <div class="tcard">
-                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <div class="tstars">
+                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+                </div>
                 <p class="ttext">"The analytics dashboard alone is worth the subscription. I can finally see exactly where we're losing deals and why."</p>
                 <div class="tauthor"><div class="tav" style="background:#3b82f6">MK</div><div><div class="tav-name">Marcus Kim</div><div class="tav-role">CEO, Growthbase</div></div></div>
             </div>
             <div class="tcard">
-                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <div class="tstars">
+                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+                </div>
                 <p class="ttext">"Setup took under an hour and my whole team was onboarded in a day. The intuitive design is miles ahead of our previous CRM."</p>
                 <div class="tauthor"><div class="tav" style="background:#8b5cf6">AP</div><div><div class="tav-name">Aisha Patel</div><div class="tav-role">Sales Director, Nexus Labs</div></div></div>
             </div>
             <div class="tcard">
-                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <div class="tstars">
+                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+                </div>
                 <p class="ttext">"Task automation has saved our reps 2 hours every single day. That's time they can spend actually selling instead of admin work."</p>
                 <div class="tauthor"><div class="tav" style="background:#22c55e">TW</div><div><div class="tav-name">Tyler Wu</div><div class="tav-role">Head of Revenue, Scaleup Co.</div></div></div>
             </div>
             <div class="tcard">
-                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <div class="tstars">
+                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+                </div>
                 <p class="ttext">"Bisto's customer support team is exceptional. They helped us customize workflows perfectly for our specific industry needs."</p>
                 <div class="tauthor"><div class="tav" style="background:#f59e0b">LC</div><div><div class="tav-name">Lena Chen</div><div class="tav-role">Operations Lead, BuildRight</div></div></div>
             </div>
             <div class="tcard">
-                <div class="tstars"><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg><svg viewBox="0 0 16 16"><polygon points="8,1 10,6 15,6 11,9 13,14 8,11 3,14 5,9 1,6 6,6"/></svg></div>
+                <div class="tstars">
+                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+                </div>
                 <p class="ttext">"We evaluated 8 CRMs before choosing Bisto. The combination of power and ease-of-use is unmatched at this price point."</p>
                 <div class="tauthor"><div class="tav" style="background:#ec4899">RN</div><div><div class="tav-name">Raj Nair</div><div class="tav-role">Founder, Launchpad AI</div></div></div>
             </div>
@@ -677,23 +708,23 @@
         </div>
         <div class="faq-list">
             <div class="faq-item open">
-                <div class="faq-q">How long does it take to set up Bisto?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-q">How long does it take to set up Bisto?<div class="faq-ico"><i data-lucide="plus" width="11" height="11"></i></div></div>
                 <div class="faq-ans"><div class="faq-ans-inner">Most teams are fully set up within an hour. We provide a guided onboarding wizard, pre-built templates for common industries, and dedicated support during your first week to ensure a smooth transition.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">Can I import my existing CRM data?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-q">Can I import my existing CRM data?<div class="faq-ico"><i data-lucide="plus" width="11" height="11"></i></div></div>
                 <div class="faq-ans"><div class="faq-ans-inner">Yes. Bisto supports one-click import from Salesforce, HubSpot, Pipedrive, and most major CRM platforms. You can also import via CSV. Your data will be migrated cleanly with all contact history intact.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">Is there a contract or can I cancel anytime?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-q">Is there a contract or can I cancel anytime?<div class="faq-ico"><i data-lucide="plus" width="11" height="11"></i></div></div>
                 <div class="faq-ans"><div class="faq-ans-inner">No contracts. All monthly plans can be cancelled at any time. Annual plans can be cancelled within the first 30 days for a full refund. We believe in earning your business every month.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">Does Bisto integrate with my email and calendar?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-q">Does Bisto integrate with my email and calendar?<div class="faq-ico"><i data-lucide="plus" width="11" height="11"></i></div></div>
                 <div class="faq-ans"><div class="faq-ans-inner">Bisto integrates seamlessly with Gmail, Outlook, Google Calendar, and Calendly. All emails and meetings are automatically logged to the relevant contact and deal records in real time.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-q">Is my data secure and GDPR compliant?<div class="faq-ico"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></div></div>
+                <div class="faq-q">Is my data secure and GDPR compliant?<div class="faq-ico"><i data-lucide="plus" width="11" height="11"></i></div></div>
                 <div class="faq-ans"><div class="faq-ans-inner">Absolutely. Bisto is SOC 2 Type II certified and fully GDPR compliant. All data is encrypted in transit and at rest. We never sell your data and you retain full ownership of everything you add to Bisto.</div></div>
             </div>
         </div>
@@ -704,14 +735,14 @@
 <section class="cta-banner">
     <h2>Transform your business with <em>chat support.</em></h2>
     <div class="social-icons">
-        <div class="si"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-        <div class="si"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
-        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none"/></svg></div>
-        <div class="si"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div class="si"><i data-lucide="facebook" width="16" height="16"></i></div>
+        <div class="si"><i data-lucide="twitter" width="16" height="16"></i></div>
+        <div class="si"><i data-lucide="instagram" width="16" height="16"></i></div>
+        <div class="si"><i data-lucide="linkedin" width="16" height="16"></i></div>
     </div>
     <a href="#" class="btn-primary" style="font-size:15px;padding:14px 32px">
         Start for free today
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        <i data-lucide="arrow-right" width="15" height="15"></i>
     </a>
 </section>
 
@@ -721,7 +752,7 @@
         <div class="ft-top">
             <div>
                 <a href="#" class="ft-logo">
-                    <div class="logo-icon"><svg viewBox="0 0 16 16" fill="white"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
+                    <div class="logo-icon"><i data-lucide="layout-grid" width="15" height="15"></i></div>
                     Bisto
                 </a>
                 <p class="ft-desc">The modern CRM for ambitious sales teams. Built for speed, designed for humans.</p>
@@ -739,6 +770,8 @@
 </footer>
 
 <script>
+    lucide.createIcons();
+
     document.querySelectorAll('.faq-q').forEach(q => {
         q.addEventListener('click', () => {
             const item = q.parentElement;
