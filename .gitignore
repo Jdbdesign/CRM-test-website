@@ -1,0 +1,17 @@
+# Inspiration / reference assets
+Website inspiration1.png
+
+# Claude internal docs
+CLAUDE Frontend.md
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Node (if added later)
+node_modules/
