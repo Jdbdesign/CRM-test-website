@@ -385,7 +385,7 @@
                 </div>
                 <div class="stat-divider"></div>
                 <div style="display:flex;align-items:center;gap:7px">
-                    <span class="stat-num">600+</span>
+                    <span class="stat-num" id="hero-stat-count">600+</span>
                     <span class="stat-text">happy clients</span>
                 </div>
             </div>
@@ -400,7 +400,7 @@
                     <div class="av" style="background:#8b5cf6">AM</div>
                     <div class="av" style="background:#22c55e">TR</div>
                 </div>
-                <div class="dash-users-count">600+</div>
+                <div class="dash-users-count" id="hero-users-count">600+</div>
                 <div class="dash-users-txt">active users today</div>
             </div>
             <div class="dash-float dash-notif">
@@ -1020,6 +1020,26 @@
                 el.classList.add('hero-entering');
             },350);
         },2500);
+    })();
+
+    // HERO COUNT-UP ANIMATION
+    (function(){
+        function countUp(el, target, duration) {
+            el.textContent = '0';
+            var startTime = null;
+            function step(ts) {
+                if (!startTime) startTime = ts;
+                var progress = Math.min((ts - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = progress >= 1 ? target + '+' : Math.floor(eased * target);
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        var s = document.getElementById('hero-stat-count');
+        var u = document.getElementById('hero-users-count');
+        if (s) countUp(s, 600, 1200);
+        if (u) countUp(u, 600, 1200);
     })();
 
     const toggle = document.getElementById('pricingToggle');
