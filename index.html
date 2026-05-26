@@ -219,16 +219,39 @@
 
         /* TESTIMONIALS */
         .test-section{background:var(--white)}
-        .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-        .tcard{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:22px;transition:transform .2s,box-shadow .2s}
-        .tcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
-        .tstars{display:flex;gap:3px;margin-bottom:12px}
-        .tstars svg{width:13px;height:13px;fill:var(--yellow);stroke:var(--yellow)}
-        .ttext{font-size:14px;color:var(--text-sec);line-height:1.65;margin-bottom:16px}
-        .tauthor{display:flex;align-items:center;gap:10px}
-        .tav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
-        .tav-name{font-size:13px;font-weight:600}
-        .tav-role{font-size:11px;color:var(--text-sec)}
+        .at-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+        .at-left{display:flex;flex-direction:column}
+        .at-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(254,91,37,.1);color:var(--accent);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:600;margin-bottom:20px;width:fit-content;letter-spacing:.03em}
+        .at-badge svg{width:13px;height:13px;fill:var(--accent);stroke:none;flex-shrink:0}
+        .at-left .sec-h{margin-bottom:12px}
+        .at-dots{display:flex;align-items:center;gap:8px;margin-top:32px}
+        .at-dot{height:8px;border:none;border-radius:100px;cursor:pointer;padding:0;outline:none;transition:width .35s ease,background .35s ease}
+        .at-dot.active{width:28px;background:var(--accent)}
+        .at-dot:not(.active){width:8px;background:var(--border)}
+        .at-dot:hover:not(.active){background:rgba(254,91,37,.4)}
+        .at-right{position:relative;padding:24px}
+        .at-stage{position:relative;min-height:360px}
+        .at-card{position:absolute;inset:0;background:var(--white);border:1px solid var(--border);border-radius:18px;padding:30px;display:flex;flex-direction:column;opacity:0;transform:translateX(52px);transition:opacity .48s ease,transform .48s ease;pointer-events:none;z-index:0;box-shadow:0 8px 32px rgba(0,0,0,.07)}
+        .at-card.active{opacity:1;transform:translateX(0);pointer-events:auto;z-index:10}
+        .at-card.at-prev{opacity:0;transform:translateX(-52px);z-index:5}
+        .at-stars{display:flex;gap:4px;margin-bottom:18px}
+        .at-stars svg{width:16px;height:16px;fill:#f5c842;stroke:#f5c842}
+        .at-quote-wrap{position:relative;flex:1;margin-bottom:20px}
+        .at-quote-ico{position:absolute;top:-2px;left:0}
+        .at-quote-ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;opacity:.2}
+        .at-text{font-size:15px;line-height:1.72;color:var(--text);font-weight:500;padding-left:26px}
+        .at-sep{height:1px;background:var(--border);margin:20px 0;flex-shrink:0}
+        .at-author{display:flex;align-items:center;gap:12px}
+        .at-av{width:42px;height:42px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+        .at-av-name{font-size:14px;font-weight:600;margin-bottom:2px}
+        .at-av-role{font-size:12px;color:var(--text-sec)}
+        .at-deco{position:absolute;width:72px;height:72px;border-radius:14px;background:rgba(254,91,37,.05);pointer-events:none}
+        .at-deco-bl{bottom:-10px;left:-10px}
+        .at-deco-tr{top:-10px;right:-10px}
+        /* Testimonial scroll fade-in */
+        .at-fade-in{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+        .at-fade-in.at-visible{opacity:1;transform:translateY(0)}
+        .at-right.at-fade-in{transition-delay:.18s}
 
         /* FAQ */
         .faq-section{background:var(--bg)}
@@ -276,7 +299,10 @@
         @media(max-width:960px){
             .hero-inner,.two-col{grid-template-columns:1fr}
             .hero-visual{display:none}
-            .feat-grid,.price-grid,.test-grid{grid-template-columns:1fr}
+            .feat-grid,.price-grid{grid-template-columns:1fr}
+            .at-layout{grid-template-columns:1fr}
+            .at-stage{min-height:420px}
+            .at-right{padding:12px 0 36px}
             nav{padding:0 20px}
             .nav-links{display:none}
             section{padding:56px 20px}
@@ -657,53 +683,125 @@
 <!-- WALL OF LOVE -->
 <section class="test-section" id="testimonials">
     <div class="sec-inner">
-        <div class="tc">
-            <h2 class="sec-h">Wall of love ♥</h2>
-            <p class="sec-sub">Don't take our word for it. Here's what our customers say about Sendrit.</p>
-        </div>
-        <div class="test-grid">
-            <div class="tcard">
-                <div class="tstars">
-                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+        <div class="at-layout">
+
+            <!-- Left: heading + nav dots -->
+            <div class="at-left at-fade-in">
+                <div class="at-badge">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    Trusted by customers
                 </div>
-                <p class="ttext">"Sendrit completely transformed how our sales team operates. We closed 40% more deals in the first quarter after switching."</p>
-                <div class="tauthor"><div class="tav" style="background:#fe5b25">SR</div><div><div class="tav-name">Sarah Reynolds</div><div class="tav-role">VP Sales, TechFlow Inc.</div></div></div>
-            </div>
-            <div class="tcard">
-                <div class="tstars">
-                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+                <h2 class="sec-h">Wall of love ♥</h2>
+                <p class="sec-sub">Don't take our word for it. Here's what our customers say about Sendrit.</p>
+                <div class="at-dots">
+                    <button class="at-dot active" data-idx="0" aria-label="Testimonial 1"></button>
+                    <button class="at-dot" data-idx="1" aria-label="Testimonial 2"></button>
+                    <button class="at-dot" data-idx="2" aria-label="Testimonial 3"></button>
+                    <button class="at-dot" data-idx="3" aria-label="Testimonial 4"></button>
+                    <button class="at-dot" data-idx="4" aria-label="Testimonial 5"></button>
+                    <button class="at-dot" data-idx="5" aria-label="Testimonial 6"></button>
                 </div>
-                <p class="ttext">"The analytics dashboard alone is worth the subscription. I can finally see exactly where we're losing deals and why."</p>
-                <div class="tauthor"><div class="tav" style="background:#3b82f6">MK</div><div><div class="tav-name">Marcus Kim</div><div class="tav-role">CEO, Growthbase</div></div></div>
             </div>
-            <div class="tcard">
-                <div class="tstars">
-                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
+
+            <!-- Right: animated testimonial cards -->
+            <div class="at-right at-fade-in">
+                <div class="at-stage">
+
+                    <div class="at-card active" data-idx="0">
+                        <div class="at-stars">
+                            <i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i>
+                        </div>
+                        <div class="at-quote-wrap">
+                            <div class="at-quote-ico"><i data-lucide="quote" width="24" height="24"></i></div>
+                            <p class="at-text">"Sendrit completely transformed how our sales team operates. We closed 40% more deals in the first quarter after switching."</p>
+                        </div>
+                        <div class="at-sep"></div>
+                        <div class="at-author">
+                            <div class="at-av" style="background:#fe5b25">SR</div>
+                            <div><div class="at-av-name">Sarah Reynolds</div><div class="at-av-role">VP Sales, TechFlow Inc.</div></div>
+                        </div>
+                    </div>
+
+                    <div class="at-card" data-idx="1">
+                        <div class="at-stars">
+                            <i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i>
+                        </div>
+                        <div class="at-quote-wrap">
+                            <div class="at-quote-ico"><i data-lucide="quote" width="24" height="24"></i></div>
+                            <p class="at-text">"The analytics dashboard alone is worth the subscription. I can finally see exactly where we're losing deals and why."</p>
+                        </div>
+                        <div class="at-sep"></div>
+                        <div class="at-author">
+                            <div class="at-av" style="background:#3b82f6">MK</div>
+                            <div><div class="at-av-name">Marcus Kim</div><div class="at-av-role">CEO, Growthbase</div></div>
+                        </div>
+                    </div>
+
+                    <div class="at-card" data-idx="2">
+                        <div class="at-stars">
+                            <i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i>
+                        </div>
+                        <div class="at-quote-wrap">
+                            <div class="at-quote-ico"><i data-lucide="quote" width="24" height="24"></i></div>
+                            <p class="at-text">"Setup took under an hour and my whole team was onboarded in a day. The intuitive design is miles ahead of our previous CRM."</p>
+                        </div>
+                        <div class="at-sep"></div>
+                        <div class="at-author">
+                            <div class="at-av" style="background:#8b5cf6">AP</div>
+                            <div><div class="at-av-name">Aisha Patel</div><div class="at-av-role">Sales Director, Nexus Labs</div></div>
+                        </div>
+                    </div>
+
+                    <div class="at-card" data-idx="3">
+                        <div class="at-stars">
+                            <i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i>
+                        </div>
+                        <div class="at-quote-wrap">
+                            <div class="at-quote-ico"><i data-lucide="quote" width="24" height="24"></i></div>
+                            <p class="at-text">"Task automation has saved our reps 2 hours every single day. That's time they can spend actually selling instead of admin work."</p>
+                        </div>
+                        <div class="at-sep"></div>
+                        <div class="at-author">
+                            <div class="at-av" style="background:#22c55e">TW</div>
+                            <div><div class="at-av-name">Tyler Wu</div><div class="at-av-role">Head of Revenue, Scaleup Co.</div></div>
+                        </div>
+                    </div>
+
+                    <div class="at-card" data-idx="4">
+                        <div class="at-stars">
+                            <i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i>
+                        </div>
+                        <div class="at-quote-wrap">
+                            <div class="at-quote-ico"><i data-lucide="quote" width="24" height="24"></i></div>
+                            <p class="at-text">"Sendrit's customer support team is exceptional. They helped us customize workflows perfectly for our specific industry needs."</p>
+                        </div>
+                        <div class="at-sep"></div>
+                        <div class="at-author">
+                            <div class="at-av" style="background:#f59e0b">LC</div>
+                            <div><div class="at-av-name">Lena Chen</div><div class="at-av-role">Operations Lead, BuildRight</div></div>
+                        </div>
+                    </div>
+
+                    <div class="at-card" data-idx="5">
+                        <div class="at-stars">
+                            <i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i><i data-lucide="star" width="16" height="16"></i>
+                        </div>
+                        <div class="at-quote-wrap">
+                            <div class="at-quote-ico"><i data-lucide="quote" width="24" height="24"></i></div>
+                            <p class="at-text">"We evaluated 8 CRMs before choosing Sendrit. The combination of power and ease-of-use is unmatched at this price point."</p>
+                        </div>
+                        <div class="at-sep"></div>
+                        <div class="at-author">
+                            <div class="at-av" style="background:#ec4899">RN</div>
+                            <div><div class="at-av-name">Raj Nair</div><div class="at-av-role">Founder, Launchpad AI</div></div>
+                        </div>
+                    </div>
+
                 </div>
-                <p class="ttext">"Setup took under an hour and my whole team was onboarded in a day. The intuitive design is miles ahead of our previous CRM."</p>
-                <div class="tauthor"><div class="tav" style="background:#8b5cf6">AP</div><div><div class="tav-name">Aisha Patel</div><div class="tav-role">Sales Director, Nexus Labs</div></div></div>
+                <div class="at-deco at-deco-bl"></div>
+                <div class="at-deco at-deco-tr"></div>
             </div>
-            <div class="tcard">
-                <div class="tstars">
-                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
-                </div>
-                <p class="ttext">"Task automation has saved our reps 2 hours every single day. That's time they can spend actually selling instead of admin work."</p>
-                <div class="tauthor"><div class="tav" style="background:#22c55e">TW</div><div><div class="tav-name">Tyler Wu</div><div class="tav-role">Head of Revenue, Scaleup Co.</div></div></div>
-            </div>
-            <div class="tcard">
-                <div class="tstars">
-                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
-                </div>
-                <p class="ttext">"Sendrit's customer support team is exceptional. They helped us customize workflows perfectly for our specific industry needs."</p>
-                <div class="tauthor"><div class="tav" style="background:#f59e0b">LC</div><div><div class="tav-name">Lena Chen</div><div class="tav-role">Operations Lead, BuildRight</div></div></div>
-            </div>
-            <div class="tcard">
-                <div class="tstars">
-                    <i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i>
-                </div>
-                <p class="ttext">"We evaluated 8 CRMs before choosing Sendrit. The combination of power and ease-of-use is unmatched at this price point."</p>
-                <div class="tauthor"><div class="tav" style="background:#ec4899">RN</div><div><div class="tav-name">Raj Nair</div><div class="tav-role">Founder, Launchpad AI</div></div></div>
-            </div>
+
         </div>
     </div>
 </section>
@@ -822,6 +920,49 @@
             if (!open) item.classList.add('open');
         });
     });
+
+    // Animated Testimonials
+    (function() {
+        var atCards = document.querySelectorAll('.at-card');
+        var atDots  = document.querySelectorAll('.at-dot');
+        var atCurrent = 0;
+        var atTimer;
+
+        function atGoTo(idx) {
+            if (idx === atCurrent) return;
+            var prev = atCurrent;
+            atCurrent = idx;
+            atCards[prev].classList.remove('active');
+            atCards[prev].classList.add('at-prev');
+            atDots[prev].classList.remove('active');
+            atCards[idx].classList.add('active');
+            atDots[idx].classList.add('active');
+            setTimeout(function() { atCards[prev].classList.remove('at-prev'); }, 520);
+        }
+
+        function atResetTimer() {
+            clearInterval(atTimer);
+            atTimer = setInterval(function() {
+                atGoTo((atCurrent + 1) % atCards.length);
+            }, 6000);
+        }
+
+        atDots.forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                atGoTo(parseInt(dot.dataset.idx));
+                atResetTimer();
+            });
+        });
+
+        var atObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) { e.target.classList.add('at-visible'); atObserver.unobserve(e.target); }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.at-fade-in').forEach(function(el) { atObserver.observe(el); });
+
+        atResetTimer();
+    })();
 
     const toggle = document.getElementById('pricingToggle');
     const prices = [{monthly:'$0',annual:'$0'},{monthly:'$29',annual:'$23'},{monthly:'$99',annual:'$79'}];
