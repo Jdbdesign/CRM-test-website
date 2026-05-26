@@ -267,13 +267,28 @@
         .faq-ans-inner{padding:0 20px 17px;font-size:14px;color:var(--text-sec);line-height:1.7}
 
         /* CTA BANNER */
-        .cta-banner{background:var(--dark);color:#fff;padding:80px 48px;text-align:center}
-        .cta-banner h2{font-size:clamp(30px,4vw,50px);font-weight:800;letter-spacing:-.02em;max-width:560px;margin:0 auto 26px}
+        .cta-banner{background:var(--dark);color:#fff;padding:80px 0;text-align:center;overflow:hidden;position:relative}
+        .cta-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+        .cta-inner{position:relative;max-width:1200px;margin:0 auto;padding:0 48px}
+        .cta-banner h2{font-size:clamp(28px,3.8vw,48px);font-weight:800;letter-spacing:-.02em;max-width:640px;margin:0 auto 18px}
         .cta-banner h2 em{font-style:italic;color:var(--accent)}
-        .social-icons{display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:26px}
-        .si{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
-        .si:hover{background:rgba(255,255,255,.2)}
-        .si svg{width:16px;height:16px;stroke:#fff;fill:none}
+        .integ-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.9);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:600;margin-bottom:18px;letter-spacing:.03em}
+        .integ-sub{font-size:15px;color:rgba(255,255,255,.5);max-width:420px;margin:0 auto 30px;line-height:1.7}
+        /* Integration icon carousel */
+        .integ-carousel{margin-top:52px;overflow:hidden;position:relative;padding:4px 0}
+        .integ-row{display:flex;gap:16px;margin-bottom:16px;width:max-content}
+        .integ-row:last-child{margin-bottom:0}
+        .integ-icon{width:58px;height:58px;border-radius:50%;background:#fff;box-shadow:0 4px 18px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s,box-shadow .2s}
+        .integ-icon:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 10px 28px rgba(0,0,0,.4)}
+        .integ-icon img{width:34px;height:34px;object-fit:contain}
+        .integ-fade-l,.integ-fade-r{position:absolute;top:0;height:100%;width:140px;pointer-events:none;z-index:2}
+        .integ-fade-l{left:0;background:linear-gradient(to right,var(--dark) 0%,transparent 100%)}
+        .integ-fade-r{right:0;background:linear-gradient(to left,var(--dark) 0%,transparent 100%)}
+        @keyframes integ-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+        @keyframes integ-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+        .integ-row-1{animation:integ-left 32s linear infinite}
+        .integ-row-2{animation:integ-right 32s linear infinite}
+        .integ-row-1:hover,.integ-row-2:hover{animation-play-state:paused}
 
         /* FOOTER */
         footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:56px 48px 28px;color:rgba(255,255,255,.65)}
@@ -308,7 +323,9 @@
             section{padding:56px 20px}
             .hero{padding:70px 20px 50px}
             .ft-top{grid-template-columns:1fr 1fr}
-            .cta-banner{padding:60px 20px}
+            .cta-banner{padding:60px 0}
+            .cta-inner{padding:0 20px}
+            .integ-fade-l,.integ-fade-r{width:60px}
         }
     </style>
 </head>
@@ -841,17 +858,21 @@
 
 <!-- CTA BANNER -->
 <section class="cta-banner">
-    <h2>Transform your business with <em>chat support.</em></h2>
-    <div class="social-icons">
-        <div class="si"><i data-lucide="facebook" width="16" height="16"></i></div>
-        <div class="si"><i data-lucide="twitter" width="16" height="16"></i></div>
-        <div class="si"><i data-lucide="instagram" width="16" height="16"></i></div>
-        <div class="si"><i data-lucide="linkedin" width="16" height="16"></i></div>
+    <div class="cta-inner">
+        <div class="integ-badge">⚡ Integrations</div>
+        <h2>Transform your business with <em>your favourite tools.</em></h2>
+        <p class="integ-sub">250+ top apps available to integrate seamlessly with your workflow.</p>
+        <a href="#" class="btn-primary" style="font-size:15px;padding:14px 32px">
+            Start for free today
+            <i data-lucide="arrow-right" width="15" height="15"></i>
+        </a>
     </div>
-    <a href="#" class="btn-primary" style="font-size:15px;padding:14px 32px">
-        Start for free today
-        <i data-lucide="arrow-right" width="15" height="15"></i>
-    </a>
+    <div class="integ-carousel">
+        <div class="integ-row integ-row-1" id="integRow1"></div>
+        <div class="integ-row integ-row-2" id="integRow2"></div>
+        <div class="integ-fade-l"></div>
+        <div class="integ-fade-r"></div>
+    </div>
 </section>
 
 <!-- FOOTER -->
@@ -920,6 +941,46 @@
             if (!open) item.classList.add('open');
         });
     });
+
+    // Integration icon carousel
+    (function() {
+        var r1 = [
+            'https://cdn-icons-png.flaticon.com/512/5968/5968854.png',
+            'https://cdn-icons-png.flaticon.com/512/732/732221.png',
+            'https://cdn-icons-png.flaticon.com/512/733/733609.png',
+            'https://cdn-icons-png.flaticon.com/512/732/732084.png',
+            'https://cdn-icons-png.flaticon.com/512/733/733585.png',
+            'https://cdn-icons-png.flaticon.com/512/281/281763.png',
+            'https://cdn-icons-png.flaticon.com/512/888/888879.png'
+        ];
+        var r2 = [
+            'https://cdn-icons-png.flaticon.com/512/174/174857.png',
+            'https://cdn-icons-png.flaticon.com/512/906/906324.png',
+            'https://cdn-icons-png.flaticon.com/512/888/888841.png',
+            'https://cdn-icons-png.flaticon.com/512/5968/5968875.png',
+            'https://cdn-icons-png.flaticon.com/512/906/906361.png',
+            'https://cdn-icons-png.flaticon.com/512/732/732190.png',
+            'https://cdn-icons-png.flaticon.com/512/888/888847.png'
+        ];
+        function buildRow(id, icons) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var repeated = [];
+            for (var i = 0; i < 4; i++) repeated = repeated.concat(icons);
+            repeated.forEach(function(src) {
+                var wrap = document.createElement('div');
+                wrap.className = 'integ-icon';
+                var img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Integration app';
+                img.loading = 'lazy';
+                wrap.appendChild(img);
+                el.appendChild(wrap);
+            });
+        }
+        buildRow('integRow1', r1);
+        buildRow('integRow2', r2);
+    })();
 
     // Animated Testimonials
     (function() {
